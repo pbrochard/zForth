@@ -50,6 +50,7 @@ typedef enum {
 void zf_init(int trace);
 void zf_bootstrap(void);
 void *zf_dump(size_t *len);
+zf_cell *zf_dstack_dump(size_t *len);
 zf_result zf_eval(const char *buf);
 void zf_abort(zf_result reason);
 

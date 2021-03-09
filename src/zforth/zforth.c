@@ -906,6 +906,12 @@ void *zf_dump(size_t *len)
 	return dict;
 }
 
+zf_cell *zf_dstack_dump(size_t *len)
+{
+	if(len) *len = dsp;
+	return dstack;
+}
+
 /*
  * End
  */

@@ -109,6 +109,19 @@ static void load(const char *fname)
 	}
 }
 
+/*
+ * dump_stack aka .S
+ */
+static void dump_dstask()
+{
+	size_t i, len;
+	zf_cell *p = zf_dstack_dump(&len);
+
+	printf("<%ld> ", len);
+	for(i = 0; i < len; i++) {
+		printf(ZF_CELL_FMT " ", p[i]);
+	}
+}
 
 /*
  * Sys callback function
@@ -158,6 +171,10 @@ zf_input_state zf_host_sys(zf_syscall_id id, const char *input)
 		
 		case ZF_SYSCALL_USER + 3:
 			save("zforth.save");
+			break;
+
+		case ZF_SYSCALL_USER + 4:
+			dump_dstask();
 			break;
 
 		default:
