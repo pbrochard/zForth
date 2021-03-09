@@ -32,6 +32,11 @@
 #define ZF_ENABLE_TYPED_MEM_ACCESS 1
 
 
+/* Set to 1 to enable dstack displayed after each command */
+
+#define ZF_ENABLE_DSTACK_DUMP_PROMPT 1
+
+
 /* Type to use for the basic cell, data stack and return stack. Choose a signed
  * integer type that suits your needs, or 'float' or 'double' if you need
  * floating point numbers */

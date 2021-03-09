@@ -295,6 +295,11 @@ int main(int argc, char **argv)
 		if(strlen(buf) > 0) {
 
 			do_eval("stdin", ++line, buf);
+
+#if ZF_ENABLE_DSTACK_DUMP_PROMPT
+			dump_dstask();
+#endif
+
 			printf("\n");
 
 			add_history(buf);
