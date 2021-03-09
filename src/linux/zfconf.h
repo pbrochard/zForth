@@ -41,7 +41,7 @@
  * integer type that suits your needs, or 'float' or 'double' if you need
  * floating point numbers */
 
-typedef float zf_cell;
+typedef double zf_cell;
 #define ZF_CELL_FMT "%.14g"
 
 
