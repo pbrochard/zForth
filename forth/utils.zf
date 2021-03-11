@@ -1,0 +1,4 @@
+: bye     postpone quit ; immediate
+: then    postpone fi ; immediate
+
+: .s      132 sys ;

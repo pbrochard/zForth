@@ -8,7 +8,6 @@
 : sin     129 sys ;
 : include 130 sys ;
 : save    131 sys ;
-: .s      132 sys ;
 
 
 ( dictionary access. These are shortcuts through the primitive operations are !!, @@ and ,, )
@@ -43,7 +42,6 @@
 : ..   dup . ;
 : here h @ ;
 
-: bye     postpone quit ; immediate
 
 
 ( memory management )
@@ -67,7 +65,6 @@
 : unless  ' not , postpone if ; immediate
 : else    ' jmp , here 999 , swap here swap ! ; immediate
 : fi      here swap ! ; immediate
-: then    postpone fi ; immediate
 
 
 ( forth style 'do' and 'loop', including loop iterators 'i' and 'j' )
