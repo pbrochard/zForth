@@ -1,0 +1,5 @@
+var marker/latest
+var marker/here
+
+: marker    h @ marker/here !  latest @ marker/latest ! ;
+: forget    marker/here @ h !  marker/latest @ latest ! ;
