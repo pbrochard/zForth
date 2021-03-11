@@ -1,0 +1,20 @@
+#! /bin/sh
+
+# zForth launcher: link this file in your path
+#
+# ln -sf bin/zForth ~/local/bin/zforth
+#
+# note the history is global and stored in ~/.zforth.hist
+
+FULLNAME=$(readlink -f $0)
+BASEDIR=$(dirname $FULLNAME)/..
+
+ZFORTH=$BASEDIR/src/linux/zforth
+ZFDIR=$BASEDIR/forth
+HISTFILE=.zforth.hist
+
+[ "$(pwd)" = ~ ] || cp ~/$HISTFILE .
+
+$ZFORTH $ZFDIR/core.zf $ZFDIR/utils.zf $*
+
+[ "$(pwd)" = ~ ] || mv $HISTFILE ~/
