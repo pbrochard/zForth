@@ -1,0 +1,103 @@
+: aa 10 ;
+: bb aa 20 ;
+: cc aa bb 30 ;
+( : dd aa bb cc 40.25 aa ; )
+: dd aa bb cc words aa ;
+
+." Latest: " latest @ . cr
+
+: show-addr ' aa ' bb ' cc ' dd ;
+show-addr .s cr xx
+
+
+: >cfa dup @ swap next next + ;
+: lookup latest @ begin over over >cfa = if exit fi next @ again ;
+
+( : see ' dd | lookup ." found=" name drop drop cr ." End" cr | ; )
+( see )
+
+: .name lookup name 32 emit drop drop ;
+( : .name . cr ; )
+
+
+: decompile  begin dup @ dup =0 if drop exit fi .name next again ;
+
+
+: see-dd ' dd ." : " dup .name ."   " decompile ." ;"cr | ;
+
+see-dd
+
+cr ." END" cr |
+bye
+
+( : next dup # + ; )
+
+( : find-addr dup @ 31 & swap next dup next rot tell @ ; )
+( : search latest @ begin cr find-addr .s 32 emit dup 0 = until cr drop ;  )
+
+( : ss find-addr 32 emit ; )
+
+
+( search
+
+bye )
+
+
+(
+1199 dup
+<2> 1199 1199
+find-cfa
+<2> 1199 1204
+swap
+<2> 1204 1199
+next @
+<2> 1204 1187
+dup find-cfa
+<3> 1204 1187 1192
+swap
+<3> 1204 1192 1187
+next @
+<3> 1204 1192 1177
+dup find-cfa
+<4> 1204 1192 1177 1182
+swap
+<4> 1204 1192 1182 1177
+next @
+<4> 1204 1192 1182 1169
+dup find-cfa
+<5> 1204 1192 1182 1169 1174
+swap
+<5> 1204 1192 1182 1174 1169
+)
+
+
+(
+: dp dup @ swap next next + ;
+<0>
+1178 dp
+<1> 1183
+1178 next @
+<2> 1183 1166
+dp
+<2> 1183 1171
+1166 next @
+<3> 1183 1171 1156
+dp
+<3> 1183 1171 1161
+1156 @
+<4> 1183 1171 1161 2
+drop
+<3> 1183 1171 1161
+1161 next @
+<4> 1183 1171 1161 1
+drop
+<3> 1183 1171 1161
+1156 next @
+<4> 1183 1171 1161 1148
+dp
+<4> 1183 1171 1161 1153
+1148 next @
+<5> 1183 1171 1161 1153 1115
+dp
+<5> 1183 1171 1161 1153 1123
+)
