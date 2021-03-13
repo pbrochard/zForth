@@ -1,5 +1,42 @@
-var marker/latest
-var marker/here
+: marker  (        - ) var 1 allot ;
+: mark!   ( marker - ) dup  1 +   h @ swap !   latest @ swap ! ;
+: forget  ( marker - ) dup  1 +        @ h !        @ latest ! ;
 
-: marker    h @ marker/here !  latest @ marker/latest ! ;
-: forget    marker/here @ h !  marker/latest @ latest ! ;
+(
+  Example:
+    Welcome to zForth, 1039 bytes used
+    include marker.zf
+    <0>
+    marker _mk_
+    <0>
+    : aa 10 ;
+    <0>
+    aa
+    <1> 10
+    drop
+    <0>
+    _mk_ mark!
+    <0>
+    : bb 20 ;
+    <0>
+    : cc 30 ;
+    <0>
+    aa bb cc
+    <3> 10 20 30
+    _mk_ forget
+    <3> 10 20 30
+    aa
+    <4> 10 20 30 10
+    bb
+    stdin:13: not a word
+    <0>
+    cc
+    stdin:14: not a word
+    <0>
+    : dd 40 ;
+    <0>
+    dd
+    <1> 40
+    aa
+    <2> 40 10
+)
