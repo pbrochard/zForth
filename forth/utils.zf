@@ -4,3 +4,5 @@
 : .s      132 sys ;
 : ?       @ . ;
 : |       .s cr ;
+
+: \   begin key =0 until ; immediate
